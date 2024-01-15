@@ -5,6 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    /* margin-top: 15%; */
 
 
 }
@@ -12,7 +13,6 @@
     
     height:250px;
     width:500px;
-    
     border: 1px dotted rgb(228, 24, 92);
     border-radius: 15px;
     box-shadow: rgba(241, 71, 179, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px, rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;
@@ -144,7 +144,7 @@
     }
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 488px) {
     .box {
         width: 60%;
     }
@@ -155,11 +155,12 @@
 
     .box form input {
         font-size: 10px;
-        width:20px;
+        width:18px;
     }
 
     .box form input::placeholder{
-        font-size: 15px;
+        font-size: 10px;
+        
         
     }
 
@@ -200,10 +201,15 @@
         width: 45px;
         font-size: 10px;
     }
+
+    #buttons{
+        gap: 2%;
+
+    }
 }
 
 
-@media only screen and (max-width: 300px) {
+@media only screen and (max-width: 260px) {
     .box {
         width: 40%;
     }
@@ -236,6 +242,8 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        column-gap: 5%;
+        column-gap: 7%;
+
     }
 }
+

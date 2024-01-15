@@ -1,58 +1,51 @@
 
-const hour = document.getElementById('hour');
-const minute = document.getElementById('minute');
-const second = document.getElementById('second');
+const hour_Input = document.getElementById('hour');
+const minute_Input = document.getElementById('minute');
+const second_Input = document.getElementById('second');
 
-const start = document.getElementById('start');
-const pause = document.getElementById('pause');
-const reset = document.getElementById('reset');
+const startButton = document.getElementById('start');
+const pauseButton = document.getElementById('pause');
+const resetButton = document.getElementById('reset');
 
-var interval = null;
-var total = 0;
-var isPaused = false;
+let interval = null;
+let totalSeconds = 0;
 
-function totalValue() {
-    total = Number(hour.value) * 3600 + Number(minute.value) * 60 + Number(second.value);
+const totalValue = () => {
+    totalSeconds = Number(hour_Input.value) * 3600 + Number(minute_Input.value) * 60 + Number(second_Input.value);
 }
 
-function timerFunc() {
-    totalValue();
-    if (!isPaused) {
-        total--;
+const timerFunc = () => {
+    if (totalSeconds > 0) {
+        totalSeconds--;
 
-        if (total >= 0) {
-            var hr = Math.floor(total / 3600);
-            var min = Math.floor((total / 60) - (hr * 60));
-            var sec = total - ((hr * 3600) + (min * 60));
+        const hr = Math.floor(totalSeconds / 3600);
+        const min = Math.floor((totalSeconds / 60) - (hr * 60));
+        const sec = totalSeconds - ((hr * 3600) + (min * 60));
 
-            hour.value = hr;
-            minute.value = min;
-            second.value = sec;
-        } else {
-            clearInterval(interval);
-            document.getElementById('disp').innerText = "Time Over";
-        }
+        hour_Input.value = hr;
+        minute_Input.value = min;
+        second_Input.value = sec;
+    } else {
+        clearInterval(interval);
+        document.getElementById('disp').innerText = "Time Over";
     }
 }
 
-start.addEventListener('click', () => {
+startButton.addEventListener('click', () => {
     clearInterval(interval);
-    isPaused = false;
+    totalValue();
     interval = setInterval(timerFunc, 1000);
 });
 
-pause.addEventListener('click', () => {
-    isPaused = true;
+pauseButton.addEventListener('click', () => {
+    clearInterval(interval); 
 });
 
-reset.addEventListener('click', () => {
+resetButton.addEventListener('click', () => {
     clearInterval(interval);
-
-    hour.value = 0;
-    minute.value = 0;
-    second.value = 0;
-    isPaused = false;
+    hour_Input.value = 0;
+    minute_Input.value = 0;
+    second_Input.value = 0;
+    totalSeconds = 0;
     document.getElementById('disp').innerText = "Timer";
 });
-
-
